@@ -10,6 +10,7 @@ public class Coin {
    */
   public void throwCoin() {
     // TODO : Votre code ici
+    
   }
 
   public CoinState getState() {

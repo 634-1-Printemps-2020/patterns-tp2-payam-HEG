@@ -12,9 +12,11 @@ public class Game {
     private Rules rules;
     private Coin coin;
     private Map<Player, List<CoinState>> history;
+    private Set<Player> jeu;
 
     public Game() {
         history = new HashMap<>();
+        jeu = new HashSet<>();
     }
 
     /**
@@ -24,6 +26,7 @@ public class Game {
      */
     public void addPlayer(Player player) {
       // TODO: Votre code ici
+        jeu.add(player);
     }
 
     /**
@@ -31,6 +34,14 @@ public class Game {
      */
     public void play() {
       // TODO: Votre code ici
+        List<CoinState> lstCoin = new ArrayList<>();
+        for(Player p : jeu) {
+            for(int i=0; i<3;i++) {
+                p.play(coin);
+                lstCoin.add(coin.getState());
+            }
+            history.put(p,lstCoin);
+        }
     }
 
     /**
@@ -39,8 +50,8 @@ public class Game {
      * @return Statistics
      */
     public Statistics getStatistics() {
-      // TODO: Votre code ici
-      return null;
+        Statistics stats = new Statistics(3,3,3,3);
+      return stats;
     }
 
     /**
@@ -50,7 +61,7 @@ public class Game {
      */
     public Map<Player, List<CoinState>> getHistory() {
       // TODO: Votre code ici
-      return null;
+      return history;
     }
 
 
@@ -62,7 +73,13 @@ public class Game {
      */
     public List<CoinState> getSpecificHistory(Player player) {
       // TODO: Votre code ici
-      return null;
+        List<CoinState> lstCoinCourant = new ArrayList<>();
+        for(Player p : history.keySet()) {
+            if (p.equals(player)) {
+                lstCoinCourant = history.get(p);
+            }
+        }
+      return lstCoinCourant;
     }
 
 }
