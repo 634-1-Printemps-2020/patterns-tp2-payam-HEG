@@ -34,11 +34,12 @@ public class Game {
      */
     public void play() {
       // TODO: Votre code ici
-        List<CoinState> lstCoin = new ArrayList<>();
+        Coin currentCoin = new Coin();
         for(Player p : jeu) {
-            for(int i=0; i<3;i++) {
-                p.play(coin);
-                lstCoin.add(coin.getState());
+            List<CoinState> lstCoin = new ArrayList<>();
+            for (int i=0; i<3; i++) {
+                p.play(currentCoin);
+                lstCoin.add(currentCoin.getState());
             }
             history.put(p,lstCoin);
         }
